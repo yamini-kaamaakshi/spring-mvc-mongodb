@@ -15,6 +15,11 @@ public class EmployeeController {
     @Autowired
     EmployeeRepository employeeRepository;
 
+    @GetMapping("/")
+    public String welcome(Model model) {
+        model.addAttribute("message", "Welcome to the Employee Management System!");
+        return "welcome"; // The name of the JSP file (welcome.jsp)
+    }
 //    displaying employee form
     @GetMapping("/insertform")
     public String showInsertForm() {
@@ -40,6 +45,7 @@ public class EmployeeController {
     @GetMapping("/list")
     public String listStudents(Model model) {
         List<Employee> employees =employeeRepository.findAll();
+
         model.addAttribute("employees", employees);
         return "list";
     }
@@ -66,8 +72,19 @@ public class EmployeeController {
      // delete employee
 @GetMapping("/delete/{id}")
 public String deleteEmployee(@PathVariable int id, Model model) {
-    employeeRepository.deleteById(id);
-    model.addAttribute("delete", "Employee deleted successfully!");
-    return "redirect:/list"; // Redirect to the list after deletion
+    Employee employee =employeeRepository.findById(id).orElse(null);
+    if (employee == null) {
+        return "error";
+    }else {
+        employeeRepository.deleteById(id);
+        model.addAttribute("delete", "Employee deleted successfully!");
+        return "redirect:/success1"; // Redirect to the list after deletion
+    }
 }
+    @GetMapping("/success1")
+    public ModelAndView showSuccessPage1() {
+        ModelAndView modelAndView = new ModelAndView("success");
+        modelAndView.addObject("message", "Employee Deleted Successfully!!");
+        return modelAndView;
+    }
 }

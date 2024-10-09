@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="container">
-    <h2 class="text-center">Added Successful</h2>
+
     <div class="alert alert-success text-center">
         ${message}
     </div>
