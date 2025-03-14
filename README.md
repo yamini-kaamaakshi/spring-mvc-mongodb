@@ -1,3 +1,3 @@
 this is an simple application usinig spring mvc and mongodb
 
-https://github.com/yamini-kaamaakshi/spring-mvc-mongodb/blob/master/Screenshot%202025-03-14%20103403.png?raw=true
+![image](https://github.com/user-attachments/assets/a390fe4c-d908-4705-854f-90dae8e958fa)
